@@ -55,15 +55,20 @@ TEMPLATE = '''
 }
 '''
 
-def _finditem(obj, key):
-    if key in obj: return obj[key]
-    for k, v in obj.items():
-        if isinstance(v,dict):
-            item = _finditem(v, key)
-            if item is not None:
-                return item
-
-    return fields_found
+def _finditems(obj, key, items=[]):
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            if k == key:
+                if isinstance(v, list):
+                    items.extend(v)
+                else:
+                    items.append(v)
+            elif isinstance(v, dict):
+                _finditems(v, key)
+            elif isinstance(v, list):
+                for item in v:
+                    _finditems(item, key)
+    return items
 
 def zip(src, dst):
     zf = zipfile.ZipFile("%s" % (dst), "w", zipfile.ZIP_DEFLATED)
@@ -114,13 +119,7 @@ if __name__ == '__main__':
         doc = xmltodict.parse(file.read())
         file.close()
 
-    paths = []
-
-    temp = _finditem(doc, 'path')
-    if type(temp) is not list:
-        temp = [temp]
-    for shape in temp:
-        paths.append(shape['@d'])
+    paths = _finditems(doc, '@d')
 
     # Use TEMPLATE to create a shape representation in JSON
     shapes = []
