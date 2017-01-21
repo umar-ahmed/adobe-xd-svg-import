@@ -1,12 +1,15 @@
-# adobe-xd-svg-import
-A Python 3 script I wrote to insert SVG icons into Adobe XD Project Files
+# SVG Import for Adobe XD
+A Python 3 script to insert SVG files into Adobe XD Project Files.
 
+# Motivation
 The XD team at Adobe have done a fantastic job developing Adobe Experience Design for MacOS and now for Windows. However, there are some features that are missing from the Windows version of the application have been in the Mac version for quite some time. One of the biggest features missing is the ability to insert SVG images into Adobe XD Projects. This script seeks to fill in that gap by utilizing the file structure of .xd files to insert SVGs.
 
 # Dependencies
 This script requires [xmltodict](https://github.com/martinblech/xmltodict) to be installed on Python 3.
 
-**NOTE: SVG must be optimized so that they contain only <svg> as the root element followed by any <path> elements that are part of the image. This can be done manually or using a tool such as [svgo](https://github.com/svg/svgo).**
+~~**NOTE: SVG must be optimized so that they contain only `<svg>` as the root element followed by any `<path>` elements that are part of the image. This can be done manually or using a tool such as [svgo](https://github.com/svg/svgo).**~~
+
+> **Thanks to some help from szh123(https://github.com/szh123), we no longer have to optimize the SVG before using it in the tool!**
 
 # How To Use
 1. Create a new XD file and place a shape (such as ellipse, rectangle, Pen tool) NOT ON AN ARTBOARD
