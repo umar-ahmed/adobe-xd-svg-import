@@ -5,7 +5,6 @@ import json
 import xmltodict
 import zipfile
 import shutil
-from pprint import pprint
 
 TEMPLATE = '''
 {
