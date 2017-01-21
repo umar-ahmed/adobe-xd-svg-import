@@ -9,7 +9,7 @@ This script requires [xmltodict](https://github.com/martinblech/xmltodict) to be
 
 ~~**NOTE: SVG must be optimized so that they contain only `<svg>` as the root element followed by any `<path>` elements that are part of the image. This can be done manually or using a tool such as [svgo](https://github.com/svg/svgo).**~~
 
-> **Thanks to some help from szh123(https://github.com/szh123), we no longer have to optimize the SVG before using it in the tool!**
+> **Thanks to some help from [szh123](https://github.com/szh123), we no longer have to optimize the SVG before using it in the tool!**
 
 # How To Use
 1. Create a new XD file and place a shape (such as ellipse, rectangle, Pen tool) NOT ON AN ARTBOARD
