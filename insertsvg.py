@@ -5,6 +5,7 @@ import json
 import xmltodict
 import zipfile
 import shutil
+from pprint import pprint
 
 TEMPLATE = '''
 {
@@ -54,6 +55,16 @@ TEMPLATE = '''
     }
 }
 '''
+
+def _finditem(obj, key):
+    if key in obj: return obj[key]
+    for k, v in obj.items():
+        if isinstance(v,dict):
+            item = _finditem(v, key)
+            if item is not None:
+                return item
+
+    return fields_found
 
 def zip(src, dst):
     zf = zipfile.ZipFile("%s" % (dst), "w", zipfile.ZIP_DEFLATED)
@@ -105,7 +116,8 @@ if __name__ == '__main__':
         file.close()
 
     paths = []
-    temp = doc['svg']['path']
+
+    temp = _finditem(doc, 'path')
     if type(temp) is not list:
         temp = [temp]
     for shape in temp:
